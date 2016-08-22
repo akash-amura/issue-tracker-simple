@@ -11,13 +11,13 @@
 
 require 'date'
 
-dev1 = Developer.new(name:"bruce wayne",email:"bruce.w@example.com",password:"12345")
+dev1 = Developer.new(name:"bruce wayne",email:"bruce.w@example.com",password:"12345",password_confirmation:"12345")
 dev1.save
 
-manager1 = Manager.new(name:"barry allen",email:"barry.a@example.com",password:"12345")
+manager1 = Manager.new(name:"barry allen",email:"barry.a@example.com",password:"12345",password_confirmation:"12345")
 manager1.save
 
-sysadmin1 = SysAdmin.new(name:"diana price",email:"diana.p@example.com",password:"12345")
+sysadmin1 = SysAdmin.new(name:"diana price",email:"diana.p@example.com",password:"12345",password_confirmation:"12345")
 sysadmin1.save
 
 project1 = Project.new(title:"CMS",description:"A content manament system for bulding websites",planned_completion_date:Date.new(2016,1,1),actual_completion_date:DateTime.new(2016,2,1,4,5,6,'+7'),creation_date:Time.new(2015, 12, 20, 2, 2, 2, "+02:00").getutc,manager_id:2,creator_id:1)
