@@ -1,0 +1,2 @@
+class SysAdmin < User
+end
