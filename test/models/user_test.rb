@@ -48,4 +48,12 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  test "Name should be lowercase" do
+    u = User.new(name:"Oliver Queen",email:"oliver.q@example.com",password:"felicity",password_confirmation:"felicity") 
+    name = "oliver queen"
+    u.save
+    u_new = User.find_by_email("oliver.q@example.com")
+    assert name == u_new.name
+  end
+
 end

@@ -1,3 +1,3 @@
 class Manager < User
-  has_many :project
+  has_many :projects
 end

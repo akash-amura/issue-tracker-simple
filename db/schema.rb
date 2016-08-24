@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160822122119) do
+ActiveRecord::Schema.define(version: 20160824045439) do
 
   create_table "artifacts", force: :cascade do |t|
     t.string   "title"
@@ -46,6 +46,18 @@ ActiveRecord::Schema.define(version: 20160822122119) do
 
   add_index "developers_projects", ["project_id", "developer_id"], name: "index_developers_projects_on_project_id_and_developer_id"
 
+  create_table "project_logs", force: :cascade do |t|
+    t.date     "date"
+    t.float    "hours"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "project_id"
+  end
+
+  add_index "project_logs", ["project_id"], name: "index_project_logs_on_project_id"
+  add_index "project_logs", ["user_id"], name: "index_project_logs_on_user_id"
+
   create_table "projects", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
@@ -68,6 +80,18 @@ ActiveRecord::Schema.define(version: 20160822122119) do
 
   add_index "projects_tickets", ["project_id", "ticket_id"], name: "index_projects_tickets_on_project_id_and_ticket_id"
 
+  create_table "ticket_logs", force: :cascade do |t|
+    t.date     "date"
+    t.float    "hours"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "ticket_id"
+    t.integer  "developer_id"
+  end
+
+  add_index "ticket_logs", ["developer_id"], name: "index_ticket_logs_on_developer_id"
+  add_index "ticket_logs", ["ticket_id"], name: "index_ticket_logs_on_ticket_id"
+
   create_table "tickets", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
@@ -80,6 +104,7 @@ ActiveRecord::Schema.define(version: 20160822122119) do
     t.integer  "state"
     t.integer  "category"
     t.integer  "owner_id"
+    t.date     "actual_completion_date"
   end
 
   add_index "tickets", ["owner_id"], name: "index_tickets_on_owner_id"

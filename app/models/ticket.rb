@@ -5,5 +5,6 @@ class Ticket < ActiveRecord::Base
   has_many :artifacts
   has_many :comments
   belongs_to :user
-  has_and_belongs_to_many :project
+  has_and_belongs_to_many :projects
+  has_one :ticketlog
 end
