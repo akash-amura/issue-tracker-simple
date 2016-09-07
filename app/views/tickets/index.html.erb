@@ -1,0 +1,5 @@
+<h1>Tickets#index</h1>
+
+<%@tickets.each do |ticket| %>
+  <p><%= link_to ticket.title,ticket %></p>
+<% end %>

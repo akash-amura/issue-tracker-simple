@@ -1,0 +1,14 @@
+<h1>Users#show</h1>
+<%= render "flash_message" %>
+<p>Hi <%= @user.name %></p>
+<p><%= session[:user_id] %></p>
+
+<p>
+<%= link_to "Logout",users_logout_path %>
+</p>
+<p>
+<%= link_to "Edit",edit_user_path %>
+</p>
+<p>
+<%= link_to "Delete profile",user_path,method: :delete %>
+</p>

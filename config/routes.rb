@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :users,constraints:{id: /\d+/ }
+  resources :tickets
+  get '/users/login', to:'users#login'
+  post '/users/login', to:'users#login'
+  get '/users/logout', to:'users#logout'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
