@@ -1,5 +1,6 @@
 <h1>Tickets#index</h1>
 
+<b>Tickets for the project </b>:<%= @project.title %>
 <%@tickets.each do |ticket| %>
-  <p><%= link_to ticket.title,ticket %></p>
+  <p><%= link_to ticket.title,project_ticket_path(id:ticket.id) %></p>
 <% end %>

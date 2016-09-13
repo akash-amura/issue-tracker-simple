@@ -1,9 +1,21 @@
 Rails.application.routes.draw do
-  resources :users,constraints:{id: /\d+/ }
-  resources :tickets
-  get '/users/login', to:'users#login'
-  post '/users/login', to:'users#login'
-  get '/users/logout', to:'users#logout'
+  constraints(id: /\d+/ ) do
+    resources :users
+    resources :projects do 
+      resources :tickets do 
+        member do
+          get '/projects/related', to:'tickets#show_projects'
+          get '/projects/related/add', to:'tickets#add_projects'
+          put '/projects/related/add', to:'tickets#add_projects'
+        end
+      end
+    end
+
+    get '/tickets', to:'tickets#ticket_index'
+    match  '/users/login', to:'users#login',via:[:get,:post]
+    get '/users/logout', to:'users#logout'
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

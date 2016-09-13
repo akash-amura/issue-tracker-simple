@@ -1,0 +1,9 @@
+<h1>Tickets#Show Related projects</h1>
+<p>Showing related projects for ticket - <b><%= @ticket.title %></b></p> 
+<% @projects.each do |project| %>
+  <p>
+  <%= link_to project.title,project_path(id:project.id) %>
+  </p>
+<% end %>
+<hr>
+<%= link_to "Add a related project",projects_related_add_project_ticket_path(project_id:params[:project_id],id:@ticket.id) %>

@@ -1,4 +1,8 @@
 <h1>Tickets#show</h1>
-
+<%= render "partials/flash_message" %>
 <p>Ticket Name: <%= @ticket.title %></p>
 <p>Ticket description: <%= @ticket.description %>
+
+<p>
+<%= link_to "Related Projects",projects_related_project_ticket_path(project_id:@project.id,id:@ticket.id) %>
+</p>

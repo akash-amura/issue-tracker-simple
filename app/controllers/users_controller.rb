@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
+  include SessionCheck
   #Get /users 
   def index
     if session_exists?
-      redirect_to user_path(session[:user_id]) and return
+      redirect_to user_path(session[:user_id]) 
     end
   end
 
@@ -11,7 +12,7 @@ class UsersController < ApplicationController
     if !session_exists?
       @user = User.new
     else 
-      redirect_to user_path(session[:user_id]) and return
+      redirect_to user_path(session[:user_id])
     end
   end
 
@@ -115,18 +116,10 @@ class UsersController < ApplicationController
     end
 
     def user_login_params
-      params.permit(:email,:password)
+      params.permit(:email,:password,:rememeber)
     end
 
     def not_found
       raise ActionController::RoutingError.new('Not Found')
-    end
-
-    def session_exists?
-      if session[:user_id] 
-        true
-      else 
-        false
-      end
     end
 end

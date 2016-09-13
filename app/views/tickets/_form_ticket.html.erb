@@ -1,0 +1,35 @@
+<%= form_for @ticket,url:project_tickets_path do |f| %>
+  <p>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  </p>
+  <p>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  </p>
+  <p>
+  <%= f.label :planned_completion_date %>
+  <%= f.date_field :planned_completion_date %>
+  </p>
+  <p>
+  <%= f.label :blog_url %>
+  <%= f.text_field :blog_url %>
+  </p>
+  <p>
+  <%= f.label :priority %>
+  <%= f.select :priority,Ticket.priorities.keys %>
+  </p>
+  <p>
+  <%= f.label :state %>
+  <%= f.select :state,Ticket.states.keys %>
+  </p>
+  <p>
+  <%= f.label :category %>
+  <%= f.select :category,Ticket.categories.keys %>
+  </p>
+
+
+  <p>
+  <%= f.submit %>
+  </p>
+<% end %>

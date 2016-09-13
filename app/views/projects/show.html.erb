@@ -1,0 +1,14 @@
+<h1>Project#show</h1>
+<p>
+<%= @project.title %>
+</p>
+<p>
+<%=  @project.description %>
+</p>
+
+<p>
+<%= link_to "All tickets",project_tickets_path(@project) %>
+</p>
+<p>
+<%= link_to "Add ticket",new_project_ticket_path(@project) %>
+</p>

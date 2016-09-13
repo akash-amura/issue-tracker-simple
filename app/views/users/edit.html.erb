@@ -1,7 +1,6 @@
 <h1>Users#edit</h1>
-<%= render "flash_message" %>
-<%= render "form_edit", user:@user %>
-<%= render "error_validation",user:@user%>
-<%= session[:user_id] %>
+<%= render "partials/flash_message" %>
+<%= render "partials/error_validation",model:@user%>
+<%= render "form_edit_user" %>
 
 

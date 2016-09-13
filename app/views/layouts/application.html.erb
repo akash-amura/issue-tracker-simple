@@ -7,8 +7,27 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  
+  <a href=<%= session[:user_id] ? user_path(session[:user_id]) : users_login_path  %>>
+    <%= image_tag("logo.png") %>
+  </a>
+  <% if !session[:user_id] %>
+    <a href=<%= users_login_path %> class="btn btn-default navbar-btn navbar-right signin">SignUp/Login</a>
+  <% else %>
+    <a href=<%= projects_path %> class="btn btn-default navbar-btn projects">Projects</a>
+    <a href=<%= tickets_path %> class="btn btn-default navbar-btn tickets">Tickets</a>
+    <a href=<%= user_path(session[:user_id])%> class="btn btn-default navbar-btn navbar-right name"><%= User.find(session[:user_id]).name.split(' ').map{|x| x.capitalize}.join(' ') %></a>
+  <% end %>
+</nav>
 
-<%= yield %>
-
+<div class="container">
+  <%= yield %>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="text-muted">An issue tracking app</p>
+  </div>
+</footer>
 </body>
 </html>

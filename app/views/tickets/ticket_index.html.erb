@@ -1,0 +1,8 @@
+<h1>Ticket#ticket_index</h1>
+
+<% @tickets.each do |ticket| %>
+  <% project_id = ticket.projects.first.id if !ticket.projects.empty? %>
+  <p>
+  <%= link_to ticket.title,project_ticket_path(project_id:project_id,id:ticket.id) %>
+  </p>
+<% end %>

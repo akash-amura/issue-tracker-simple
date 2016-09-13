@@ -7,4 +7,5 @@ class Ticket < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :projects
   has_one :ticketlog
+  validates :title,:user,:state,:priority,:category, presence: true
 end

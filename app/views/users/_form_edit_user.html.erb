@@ -1,0 +1,21 @@
+<%= form_for(@user) do |f|%>
+  <p> 
+  <%=  f.label :name%>:
+  <%= f.text_field :name %>
+  </p>
+  <p>
+  <%= f.label  :email%>:
+  <%= f.text_field :email%>
+  </p>
+  <p>
+  <%= f.label  :type,"Role" %>:
+  <% Rails.application.eager_load! %>
+  <%= f.select  :type,options_for_select(User.descendants.map(&:to_s),@user.type) %>
+  </p>
+  <p>
+  <%= f.submit  %>
+  </p>
+<% end %>
+
+
+

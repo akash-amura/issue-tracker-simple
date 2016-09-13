@@ -1,0 +1,9 @@
+<h1>Ticket#Add related Project</h1>
+
+<p>Add related projects for ticket - <b><%= @ticket.title %></b> </p>
+<%= form_for :project,method: :put,url:projects_related_add_project_ticket_path(id:@ticket.id)  do |f| %> 
+<%= f.collection_check_boxes :project_ids,@projects,:id,:title %>
+<p>
+<%= f.submit %>
+</p>
+<% end %>
