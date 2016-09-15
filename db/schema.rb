@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160907085240) do
+ActiveRecord::Schema.define(version: 20160913062516) do
 
   create_table "artifacts", force: :cascade do |t|
     t.string   "title"
@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 20160907085240) do
     t.datetime "updated_at",      null: false
     t.string   "type"
     t.string   "password_digest"
+    t.string   "remember_digest"
   end
 
 end

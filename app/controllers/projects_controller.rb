@@ -1,4 +1,8 @@
 class ProjectsController < ApplicationController
+  include SessionCheck
+
+  around_action :session_action
+
   def index
     @projects = Project.all
   end
@@ -47,4 +51,6 @@ class ProjectsController < ApplicationController
     def project_params
       params.require(:project).permit(:title,:description,:planned_completion_date,:manager_id,:creator_id)
     end
+
+
 end

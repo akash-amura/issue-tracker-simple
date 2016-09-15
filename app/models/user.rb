@@ -10,11 +10,16 @@ class User < ActiveRecord::Base
   has_many :project_logs, class_name:"ProjectLog"
 
 
+  def manager?
+    self.type == 'Manager'? true: false
+  end
+
   protected 
     def lower_fields
       self.name = self.name.downcase
       self.email = self.email.downcase
     end
+
 end
 
 

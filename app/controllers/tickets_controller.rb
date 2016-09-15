@@ -1,5 +1,7 @@
 class TicketsController < ApplicationController
   include SessionCheck
+
+  around_action :session_action
   
   def index
     @project = Project.find(params[:project_id])
@@ -89,4 +91,5 @@ class TicketsController < ApplicationController
     def add_project_params
       params.require(:project).permit(project_ids:[])
     end
+
 end

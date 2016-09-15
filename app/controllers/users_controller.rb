@@ -83,8 +83,12 @@ class UsersController < ApplicationController
       elsif request.request_method_symbol == :post
         email  =user_login_params[:email]
         password= user_login_params[:password]
+        remember = user_login_params[:remember]
         @user = User.find_by_email(email)
         if !@user.nil? && @user.authenticate(password)
+          digest = SecureRandom.urlsafe_base64
+          @user.update(remember_digest:BCrypt::Password.create(digest)) if remember == '1'
+          cookies.permanent.signed[:remember_token] = digest
           session[:user_id] = @user.id
           flash[:message] = nil
           redirect_to @user
@@ -101,7 +105,8 @@ class UsersController < ApplicationController
   #Get /users/logout
   def logout
     if session_exists?
-      session[:user_id] = nil
+      session.delete(:user_id)
+      cookies.delete(:remember_token)
       redirect_to users_path
     end
   end
@@ -116,7 +121,7 @@ class UsersController < ApplicationController
     end
 
     def user_login_params
-      params.permit(:email,:password,:rememeber)
+      params.permit(:email,:password,:remember)
     end
 
     def not_found
